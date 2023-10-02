@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <span>Cadastro de Jogadores</span>
+</mat-toolbar>
+
+<div class="cadastroCard"><mat-card>
+  <mat-card-header><h1>Jogador</h1></mat-card-header>
+  <mat-form-field appearance="outline">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="novoJogador.nome" placeholder="nome existente editará jogador">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Seleção</mat-label>
+    <input matInput [(ngModel)]="novoJogador.selecao" placeholder="digite o país">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Número da Camisa</mat-label>
+    <input matInput [(ngModel)]="novoJogador.numero" placeholder="digite a número">
+  </mat-form-field>
+
+    <button (click)="cadastrar()">Adicionar ou Editar Jogador</button>
+    <button (click)="toggleListarJogadores()">
+      {{ listarJogadores ? 'Ocultar Jogadores' : 'Listar Jogadores' }}
+    </button>
+
+  </mat-card>
+</div>
+
+<br>
+
+<span *ngIf="listarJogadores" class="jogadoresCadastrados">
+  <mat-card class="forCadastrados" *ngFor="let jogador of jogadores">
+    <div>
+      <mat-card-header><h1>{{jogador.nome}}</h1></mat-card-header>
+      <br> <br>
+      <mat-card-content>O Jogador {{jogador.nome}} atua pela seleção da {{jogador.selecao}}, sua camisa é a de número: {{jogador.numero}}</mat-card-content>
+      <button mat-icon-button (click)="remover(jogador)"><mat-icon>delete</mat-icon></button>
+    </div>
+  </mat-card>
+</span>
